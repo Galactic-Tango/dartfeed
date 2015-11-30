@@ -20,7 +20,6 @@ var getArticles = function (req, res, next) {
         .in('category', categories)
         .then(function (articles) {
           articles.forEach(function (art) {
-            console.log(art);
             art.userScores = art.userScores && art.userScores[req.user.id] ? art.userScores[req.user.id] : 0.5;
             art.userLikes = !!art.userLikes && !!art.userLikes[req.user.id];
           });
