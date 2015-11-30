@@ -7,8 +7,10 @@ var request = require('request');
 var monkeyLearn = require('../../worker/analysis_module/UserTreeInterface.js');
 
 var getArticles = function (req, res, next) {
+  console.log('req user id is ', req.user.id);
   User.findOne({_id: req.user.id})
     .exec(function (err, user) {
+      console.log('user is ', user);
       var categories = user.categories.filter(function (item) {
         return !!item;
       });
@@ -19,16 +21,21 @@ var getArticles = function (req, res, next) {
         Article.find()
         .in('category', categories)
         .then(function (articles) {
+          console.log(articles.length + ' arts found');
           articles.forEach(function (art) {
-            art.userScores = art.userScores[req.user.id] ? art.userScores[req.user.id] : 0.5;
+            console.log(art);
+            art.userScores = art.userScores && art.userScores[req.user.id] ? art.userScores[req.user.id] : 0.5;
             art.userLikes = !!art.userLikes && !!art.userLikes[req.user.id];
           });
           //console.log('articles', articles)
+          console.log('here now');
           resBody.articles = articles;
           resBody.userCats = categories;
           //console.log('resBody', resBody)
+          console.log('find categories');
           Category.find({})
             .then(function (cats) {
+              console.log(cats + ' found');
               resBody.allCats = cats.map(function (cat) {
                 return cat.name;
               });
