@@ -6,9 +6,11 @@ var artCtrl = require('./../../server/articles/articleController.js');
 db.connect();
 
 rss.then(function(formattedArticles){
+  console.log('articles acquired');
 
   //identify which articles are newer than the newest one currently in the DB
   artCtrl.newArticles(formattedArticles).then(function(newArticles){
+    console.log(newArticles.length + ' new articles');
     if(newArticles.length === 0){
       db.disconnect();
       return;
@@ -25,6 +27,7 @@ rss.then(function(formattedArticles){
         db.disconnect();
         return;
       }
+      console.log('articles classified');
       var summariesByCategory = {};
       newArticles.forEach(function(article, index){
         //console.dir(article);
@@ -56,14 +59,13 @@ var assignScores = function(category, newArticles, summariesByCategory, cb){
   var summariesByCat = summariesByCategory;   
 
   return function(err, scores){
-    if(err){
+    if(err || !scores){
       console.log(err);
-      db.disconnect();
-      return;
-    }
-    for(var artIndex = 0; artIndex < scores.length; artIndex++){
-      for(var userIndex = 0; userIndex < scores[artIndex].length; userIndex++){
-        articles[summariesByCat[cat].indices[artIndex]].userScores[scores[artIndex][userIndex][0].label] = scores[artIndex][userIndex][0].probability;
+    } else {
+      for(var artIndex = 0; artIndex < scores.length; artIndex++){
+        for(var userIndex = 0; userIndex < scores[artIndex].length; userIndex++){
+          articles[summariesByCat[cat].indices[artIndex]].userScores[scores[artIndex][userIndex][0].label] = scores[artIndex][userIndex][0].probability;
+        }
       }
     }
     cb(articles);
@@ -82,6 +84,7 @@ var getUserScores = function(summariesByCategory, newArticles){
       var category = categories[catIndex];
       monkeyLearn.classify(category, summariesByCategory[category].summaries, assignScores(category, newArticles, summariesByCategory, function(articles){
         categoriesComplete++;
+        console.log(categoriesComplete + ' of ' + categories.length + ' complete')
         //once all the articles have been scored by monkeyLearn, write them all to the DB
         if(categoriesComplete === categories.length){
           artCtrl.writeArticles(articles).then(function(){

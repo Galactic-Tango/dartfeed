@@ -20,19 +20,16 @@ var getArticles = function (req, res, next) {
         .in('category', categories)
         .then(function (articles) {
           articles.forEach(function (art) {
-            art.userScores = art.userScores[req.user.id] ? art.userScores[req.user.id] : 0.5;
+            art.userScores = art.userScores && art.userScores[req.user.id] ? art.userScores[req.user.id] : 0.5;
             art.userLikes = !!art.userLikes && !!art.userLikes[req.user.id];
           });
-          //console.log('articles', articles)
           resBody.articles = articles;
           resBody.userCats = categories;
-          //console.log('resBody', resBody)
           Category.find({})
             .then(function (cats) {
               resBody.allCats = cats.map(function (cat) {
                 return cat.name;
               });
-              //console.log('resBody', resBody)
               res.json(resBody);
             });
         });
