@@ -14,7 +14,6 @@ angular.module('dartnews.feed', [])
   };
 
   var updateData = function (appData){
-    console.dir(appData);
     $scope.allCategories = appData.allCats;
     $scope.userCategories = appData.userCats;
     $scope.articles = appData.articles;
@@ -28,10 +27,8 @@ angular.module('dartnews.feed', [])
   };
 
   $scope.getArticlesForUser = function (){
-    console.log('get arts');
     Feed.getArticlesForUser()
       .then(function (response){
-        console.log('got arts');
         updateData(response.data);
       });
   };
