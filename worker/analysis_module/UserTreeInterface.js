@@ -121,6 +121,7 @@ module.exports = {
       }
     }, function (err, res) {
       if(err || res.statusCode >= 400) {
+        console.log(treeName);
         console.log('error in userTree.classify:', err);
         console.log('statusCode', res.statusCode);
         callback(err, null);
