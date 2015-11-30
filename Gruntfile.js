@@ -60,9 +60,7 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         "client/app/services/services.js",
-        "client/app/feed/testData.js",
-        "client/app/user/user.js",
-        "client/app/newUserPage/newUserPage.js",
+        "client/app/feed/feed.js",
         "client/app/app.js"
       ],
       options: {
@@ -82,7 +80,9 @@ module.exports = function(grunt) {
         }
       },
       rss: {
-        command: 'node worker/analysis_module/articleWorker.js'
+
+        command: 'node worker/articleWorker.js'
+        //& is intentional.  it runs the command in the background
       },
       clearCronTab: {
         command: 'crontab -r'
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
     },
     crontab: {
       rss: {
-        cronfile: 'worker/analysis_module/articleCron'
+        cronfile: 'worker/tree_interface/articleCron'
       },
       train: {
         cronfile: 'worker/trainingCron'

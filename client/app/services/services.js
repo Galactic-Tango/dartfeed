@@ -1,5 +1,5 @@
 angular.module('dartnews.services', [])
-.factory('Feed', function ($http){
+.factory('Feed', ['$http', function ($http){
 
   var getUserProfile = function (){
     return $http({
@@ -52,4 +52,4 @@ angular.module('dartnews.services', [])
 
   };
 
-});
+}]);

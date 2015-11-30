@@ -1,5 +1,5 @@
 angular.module('dartnews.feed', [])
-.controller('FeedController', function ($scope, $window, $location, Feed) {
+.controller('FeedController', ['$scope', '$window', '$location', 'Feed', function ($scope, $window, $location, Feed) {
   $scope.errSrc = "http://assets.inhabitat.com/wp-content/blogs.dir/1/files/2011/11/data-farm-537x399.jpg";
 
   var pickColor = function (score) {
@@ -67,7 +67,7 @@ angular.module('dartnews.feed', [])
 
   $scope.getArticlesForUser();
 
-})
+}])
 .filter('thirtyWordsMax', function () {
   return function (articleSummary) {
     var shortendSummary = articleSummary.split(' ').slice(0, 29).join(' ');

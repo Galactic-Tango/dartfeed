@@ -4,7 +4,7 @@
 var db = require('./dbInit');
 var mongoose = require('mongoose');
 var trainingSampleCtrl = require('../server/trainingSamples/trainingSampleController');
-var monkeyLearn = require('./analysis_module/UserTreeInterface');
+var monkeyLearn = require('./tree_interface/UserTreeInterface');
 var _ = require('underscore');
 
 // establish with mongoose models for collection in the db

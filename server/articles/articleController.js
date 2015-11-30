@@ -4,7 +4,7 @@ var User = require('../users/userModel');
 var TrainingSample = require('../trainingSamples/trainingSampleController');
 var Promise = require('bluebird');
 var request = require('request');
-var monkeyLearn = require('../../worker/analysis_module/UserTreeInterface.js');
+var monkeyLearn = require('.././UserTreeInterface.js');
 
 var getArticles = function (req, res, next) {
   User.findOne({_id: req.user.id})
