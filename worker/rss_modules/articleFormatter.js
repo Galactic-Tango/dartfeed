@@ -3,7 +3,7 @@ var imageScraper = require('./imageScraper');
 
 module.exports = function (rawArticle, rssInfo) {
   var formattedArticle = {
-    title: rawArticle.title,
+    title: decodeURI(rawArticle.title),
     linkURL: rawArticle.link,
     publisher: rawArticle.feed.name,
     summary: contentFormatter(rawArticle.content),
@@ -11,6 +11,8 @@ module.exports = function (rawArticle, rssInfo) {
     date: rawArticle.published,
     category: null
   };
+  console.log(rawArticle.title);
+  console.log(formattedArticle.title);
 
   return imageScraper(formattedArticle.linkURL)
     .then(function (imgURL) {

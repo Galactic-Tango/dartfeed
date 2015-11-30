@@ -17,7 +17,11 @@ trainingSampleCtrl.getAllTrainingSamples()
   .then(function (trainingSamples) {
     console.log('All training samples have been fetched.');
     return trainingSamples.reduce(function (acc, sample) {
-      acc[sample.article.category] = (acc[sample.article.category]) ? acc[sample.article.category].push(sample) : [sample];
+      if(acc[sample.article.category]){
+        acc[sample.article.category].push(sample)
+      } else {
+        acc[sample.article.category] = [sample];
+      }
       return acc;
     }, {});
   })
