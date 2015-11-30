@@ -7,7 +7,6 @@ var request = require('request');
 var monkeyLearn = require('../../worker/analysis_module/UserTreeInterface.js');
 
 var getArticles = function (req, res, next) {
-  console.log('req user id is ', req.user.id);
   User.findOne({_id: req.user.id})
     .exec(function (err, user) {
       console.log('user is ', user);
