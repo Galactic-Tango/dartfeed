@@ -9,28 +9,28 @@ var token = require('../../server/config.js').monkeyLearnToken;
 //tree that's been changed.  Or getUserCategoryIdsForAllTrees if you need to update all of them.
 var trees = {
   'Arts & Culture': {
-    id: 'cl_XZPRupgQ',
-    rootId: 561673
+    id: 'cl_kbrYow2X',
+    rootId: 579707
   },
   'Business': {
-    id: 'cl_zqRxqXyT',
-    rootId: 561677
+    id: 'cl_Zi4UHAnT',
+    rootId: 579708
   },
   'Living': {
-    id: 'cl_B7cNGLwE',
-    rootId: 561679
+    id: 'cl_w7hS7nBg',
+    rootId: 579709
   },
   'Science & Technology': {
-    id: 'cl_zbp9FacQ',
-    rootId: 561675
+    id: 'cl_24an8BVv',
+    rootId: 579710
   },
   'Sports': {
-    id: 'cl_Kd8K3gda',
-    rootId: 561681
+    id: 'cl_XyYeXbGo',
+    rootId: 579711
   },
   'World': {
-    id: 'cl_hy3qhe9v',
-    rootId: 561683
+    id: 'cl_QqrxsEvy',
+    rootId: 579712
   }
 };
 
@@ -71,7 +71,7 @@ var execOnAllTrees = function (fn) {
           }
           }]
         ));
-      }.bind(null, func, treeNum), timeoutCounter*1000),
+      }.bind(null, func, treeNum), timeoutCounter*3000),
       timeoutCounter++;
     });
   }
