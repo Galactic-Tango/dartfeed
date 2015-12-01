@@ -93,7 +93,7 @@ module.exports = function(grunt) {
     },
     crontab: {
       rss: {
-        cronfile: 'worker/tree_interface/articleCron'
+        cronfile: 'worker/articleCron'
       },
       train: {
         cronfile: 'worker/trainingCron'
