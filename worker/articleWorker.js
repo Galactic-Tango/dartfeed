@@ -96,7 +96,7 @@ var getUserScores = function(summariesByCategory, newArticles){
       if(catIndex < categories.length-1){
         throttleUserScores(catIndex+1);
       }
-    }, 5000);
+    }, 3000);
   }
 
   throttleUserScores(0);

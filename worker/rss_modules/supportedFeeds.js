@@ -23,12 +23,12 @@ var AVClub = {
   fallbackArticleImage: 'http://assets.onionstatic.com/avclub/core/img/avclub-logo.png'
 };
 
-var NYT = {
-  rssUrl: 'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml', // NYT Headlines
-  fallbackArticleImage: 'https://s0.wp.com/wp-content/themes/vip/nytimes-witw/img/global/nyt-t-logo.png'
+var Vox = {
+  rssUrl: 'http://www.vox.com/rss/index.xml', // Vox Headlines
+  fallbackArticleImage: 'http://freebeacon.com/wp-content/uploads/2014/07/Vox-logo.png'
 };
 
-//var supportedFeeds = [NPR, BBC, techCrunch, AVClub, ESPN, NYT];
-var supportedFeeds = [ESPN];
+var supportedFeeds = [NPR, BBC, AVClub, ESPN, Vox];
+
 
 module.exports = supportedFeeds;
