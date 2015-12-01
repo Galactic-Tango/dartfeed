@@ -82,6 +82,7 @@ var getUserScores = function(summariesByCategory, newArticles){
   var throttleUserScores = function(catIndex){
     setTimeout(function(){
       var category = categories[catIndex];
+      console.log(category);
       monkeyLearn.classify(category, summariesByCategory[category].summaries, assignScores(category, newArticles, summariesByCategory, function(articles){
         categoriesComplete++;
         console.log(categoriesComplete + ' of ' + categories.length + ' complete')
@@ -95,7 +96,7 @@ var getUserScores = function(summariesByCategory, newArticles){
       if(catIndex < categories.length-1){
         throttleUserScores(catIndex+1);
       }
-    }, 1000);
+    }, 3000);
   }
 
   throttleUserScores(0);
