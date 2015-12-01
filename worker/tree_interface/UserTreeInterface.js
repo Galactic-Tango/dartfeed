@@ -199,8 +199,6 @@ module.exports = {
   },
   addUserToTree: function (treeName, username, callback) {
     //adds username as a category id to the given tree.
-    console.log(treeName)
-    console.log(username)
     request.post({
       url: 'https://api.monkeylearn.com/v2/classifiers/' + trees[treeName].id + '/categories/',
       headers: {
