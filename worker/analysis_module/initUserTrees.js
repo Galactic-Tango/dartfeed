@@ -2,29 +2,29 @@ var _ = require('underscore');
 var userTreeCtrl = require('./UserTreeInterface');
 
 var trees = {
-  'Art & Culture': {
-    id: 'cl_XZPRupgQ',
-    rootId: 561673
+  'Arts & Culture': {
+    id: 'cl_kbrYow2X',
+    rootId: 579707
   },
   'Business': {
-    id: 'cl_zqRxqXyT',
-    rootId: 561677
+    id: 'cl_Zi4UHAnT',
+    rootId: 579708
   },
   'Living': {
-    id: 'cl_B7cNGLwE',
-    rootId: 561679
+    id: 'cl_w7hS7nBg',
+    rootId: 579709
   },
   'Science & Technology': {
-    id: 'cl_zbp9FacQ',
-    rootId: 561675
+    id: 'cl_24an8BVv',
+    rootId: 579710
   },
   'Sports': {
-    id: 'cl_Kd8K3gda',
-    rootId: 561681
+    id: 'cl_XyYeXbGo',
+    rootId: 579711
   },
   'World': {
-    id: 'cl_hy3qhe9v',
-    rootId: 561683
+    id: 'cl_QqrxsEvy',
+    rootId: 579712
   }
 };
 
@@ -67,11 +67,11 @@ module.exports.initDummies = function () {
   var dummyText = makeDummyText(3000);
 
   userTreeCtrl.getUserCategoryIdsForAllTrees(function (ids) {
-    // console.log(ids) //uncomment if you need to know the rootIds.
+    console.log(ids) //uncomment if you need to know the rootIds.
     var countIds = _.reduce(ids['Living'], function (acc) {
       return acc + 1;
     }, 0);
-    userTreeCtrl.addUserToAllTrees(dummy+2, function () {
+    userTreeCtrl.addUserToAllTrees(dummy, function () {
       _.each(trees, function (value, treeName) {
         userTreeCtrl.addSample([{text: dummyText, category_id: ids[dummy]}], function () {
           if(countIds > 2) {
@@ -84,3 +84,49 @@ module.exports.initDummies = function () {
     });
   });
 };
+
+// userTreeCtrl.getUserCategoryIdsForAllTrees(function (ids) {
+//   console.log(ids);
+// })
+
+// var dummy = makeDummyText(10);
+
+// userTreeCtrl.addUserToAllTrees(dummy, function () {
+//   console.log('woot!')
+// })
+
+var text1 = makeDummyText(3000);
+
+var text2 = makeDummyText(3000);
+
+console.log('\n', text1, '\n')
+console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+console.log('\n', text2, '\n')
+
+// var treeArr = []
+// for(tree in trees) {
+//   treeArr.push(tree);
+// }
+
+// userTreeCtrl.getUserCategoryIdsForAllTrees(function (ids) {
+//   setTimeout(function () {
+//     _.each(treeArr, function (treeName, index) {
+//       setTimeout(function () {
+//         var catArr = []
+//         for(cat in ids[treeName]) {
+//           if(cat !== 'Root') {
+//             catArr.push(ids[cat]);
+//           }
+//         }
+//         console.log(ids)
+//         console.log(catArr)
+//         userTreeCtrl.addSamples(treeName,  [
+//             {text: text1, category_id: ids[catArr[0]]}, 
+//             {text: text2, category_id: ids[catArr[1]]}
+//           ], function () {
+//           console.log('added sample');
+//         });
+//       }, 1000*index);
+//     });
+//   }, 1000);
+// });

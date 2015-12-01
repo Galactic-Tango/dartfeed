@@ -83,7 +83,6 @@ module.exports = function(grunt) {
       },
       rss: {
         command: 'node worker/analysis_module/articleWorker.js'
-        //& is intentional.  it runs the command in the background
       },
       clearCronTab: {
         command: 'crontab -r'
