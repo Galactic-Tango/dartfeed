@@ -1,7 +1,7 @@
-var rss = require('./../rss_modules/rss.js');
-var db = require('./../dbInit.js');
-var monkeyLearn = require('./UserTreeInterface.js');
-var artCtrl = require('./../../server/articles/articleController.js');
+var rss = require('./rss_modules/rss.js');
+var db = require('./dbInit.js');
+var monkeyLearn = require('./tree_interface/UserTreeInterface.js');
+var artCtrl = require('./../server/articles/articleController.js');
 
 db.connect();
 
